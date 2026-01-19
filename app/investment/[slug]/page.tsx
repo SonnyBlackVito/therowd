@@ -1,14 +1,19 @@
-import { investmentProjects } from '@/data/investments';
-import Media from './components/Media';
-import Overview from './components/Overview';
-import Summary from './components/Summary';
-import TabbedContent from './components/TabbedContent';
+import { investmentProjects } from "@/data/investments";
+import Media from "./components/Media";
+import Overview from "./components/Overview";
+import Summary from "./components/Summary";
+import TabbedContent from "./components/TabbedContent";
 
-export default async function InvestDetailPage({ params }: { params: Promise<{ slug?: string }> }) {
+export default async function InvestDetailPage({
+  params,
+}: {
+  params: Promise<{ slug?: string }>;
+}) {
   const { slug } = await params;
-  const normalizedSlug = slug?.toLowerCase().replace(/\s+/g, '-') ?? '';
-  const project = investmentProjects.find((item) => item.id === normalizedSlug) ?? investmentProjects[0];
-
+  const normalizedSlug = slug?.toLowerCase().replace(/\s+/g, "-") ?? "";
+  const project =
+    investmentProjects.find((item) => item.id === normalizedSlug) ??
+    investmentProjects[0];
   return (
     <div className="min-h-screen bg-[#040B16] text-white py-10">
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 space-y-8">
@@ -19,7 +24,7 @@ export default async function InvestDetailPage({ params }: { params: Promise<{ s
               <Media cover={project.cover} gallery={project.gallery} />
             </div>
             <TabbedContent
-              about={project.about} 
+              about={project.about}
               shortDescription={project.shortDescription}
             />
           </div>
