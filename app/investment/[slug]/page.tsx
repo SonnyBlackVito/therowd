@@ -14,6 +14,7 @@ export default async function InvestDetailPage({
   const project =
     investmentProjects.find((item) => item.id === normalizedSlug) ??
     investmentProjects[0];
+
   return (
     <div className="min-h-screen bg-[#040B16] text-white py-10">
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 space-y-8">
