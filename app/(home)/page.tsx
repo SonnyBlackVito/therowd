@@ -7,7 +7,6 @@ import PartnerSection from "./components/PartnerSection";
 import QuestionSection from "./components/QuestionSection";
 import WhyChooseUsSection from "./components/WhyChooseUsSection";
 
-
 export default function Home() {
   return (
     <>

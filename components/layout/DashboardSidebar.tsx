@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FiCompass,
   FiHome,
@@ -23,8 +23,8 @@ import {
   FiUsers,
   FiMessageCircle,
   FiExternalLink,
-} from 'react-icons/fi';
-import GradientButton from '@/components/ui/buttons/GradientButton';
+} from "react-icons/fi";
+import GradientButton from "@/components/ui/buttons/GradientButton";
 
 interface NavItem {
   label: string;
@@ -33,38 +33,103 @@ interface NavItem {
   external?: boolean;
 }
 
-const sections: Array<{ title: string; icon: React.ReactNode; items: NavItem[] }> = [
+const sections: Array<{
+  title: string;
+  icon: React.ReactNode;
+  items: NavItem[];
+}> = [
   {
-    title: 'Explore',
+    title: "Explore",
     icon: <FiCompass className="h-6 w-6 text-white" />,
     items: [
-      { label: 'Home', icon: <FiHome className="h-5 w-5" />, href: '/dashboard' },
-      { label: 'Opportunities', icon: <FiTrendingUp className="h-5 w-5" />, href: '/dashboard/opportunities' },
-      { label: 'News Feed', icon: <FiStar className="h-5 w-5" />, href: '/dashboard/news' },
-      { label: 'How to Invest', icon: <FiBookOpen className="h-5 w-5" />, href: '/dashboard/how-to-invest' },
-      { label: 'Events & Webinars', icon: <FiCalendar className="h-5 w-5" />, href: '/dashboard/events' },
+      {
+        label: "Home",
+        icon: <FiHome className="h-5 w-5" />,
+        href: "/dashboard",
+      },
+      {
+        label: "Opportunities",
+        icon: <FiTrendingUp className="h-5 w-5" />,
+        href: "/dashboard/opportunities",
+      },
+      {
+        label: "News Feed",
+        icon: <FiStar className="h-5 w-5" />,
+        href: "/dashboard/news",
+      },
+      {
+        label: "How to Invest",
+        icon: <FiBookOpen className="h-5 w-5" />,
+        href: "/dashboard/how-to-invest",
+      },
+      {
+        label: "Events & Webinars",
+        icon: <FiCalendar className="h-5 w-5" />,
+        href: "/dashboard/events",
+      },
     ],
   },
   {
-    title: 'My Investments',
+    title: "My Investments",
     icon: <FiPieChart className="h-6 w-6 text-white" />,
     items: [
-      { label: 'Pending', icon: <FiClock className="h-5 w-5" />, href: '/dashboard/pending' },
-      { label: 'Performance', icon: <FiBarChart2 className="h-5 w-5" />, href: '/dashboard/performance' },
-      { label: 'Holdings', icon: <FiBriefcase className="h-5 w-5" />, href: '/dashboard/holdings' },
-      { label: 'Reports & Tax Docs', icon: <FiFileText className="h-5 w-5" />, href: '/dashboard/reports' },
-      { label: 'Activities', icon: <FiRefreshCw className="h-5 w-5" />, href: '/dashboard/activities' },
+      {
+        label: "Pending",
+        icon: <FiClock className="h-5 w-5" />,
+        href: "/dashboard/pending",
+      },
+      {
+        label: "Performance",
+        icon: <FiBarChart2 className="h-5 w-5" />,
+        href: "/dashboard/performance",
+      },
+      {
+        label: "Holdings",
+        icon: <FiBriefcase className="h-5 w-5" />,
+        href: "/dashboard/holdings",
+      },
+      {
+        label: "Reports & Tax Docs",
+        icon: <FiFileText className="h-5 w-5" />,
+        href: "/dashboard/reports",
+      },
+      {
+        label: "Activities",
+        icon: <FiRefreshCw className="h-5 w-5" />,
+        href: "/dashboard/activities",
+      },
     ],
   },
   {
-    title: 'General',
+    title: "General",
     icon: <FiMenu className="h-6 w-6 text-white" />,
     items: [
-      { label: 'My Profile', icon: <FiUser className="h-5 w-5" />, href: '/dashboard/profile' },
-      { label: 'Mobile App', icon: <FiSmartphone className="h-5 w-5" />, href: '/dashboard/mobile-app' },
-      { label: 'Refer a Friend', icon: <FiUsers className="h-5 w-5" />, href: '/dashboard/refer' },
-      { label: 'Contact Us', icon: <FiMessageCircle className="h-5 w-5" />, href: '/dashboard/contact' },
-      { label: 'Go to ourcrowd.com', icon: <FiExternalLink className="h-5 w-5" />, href: 'https://ourcrowd.com', external: true },
+      {
+        label: "My Profile",
+        icon: <FiUser className="h-5 w-5" />,
+        href: "/dashboard/profile",
+      },
+      {
+        label: "Mobile App",
+        icon: <FiSmartphone className="h-5 w-5" />,
+        href: "/dashboard/mobile-app",
+      },
+      {
+        label: "Refer a Friend",
+        icon: <FiUsers className="h-5 w-5" />,
+        href: "/dashboard/refer",
+      },
+      {
+        label: "Contact Us",
+        icon: <FiMessageCircle className="h-5 w-5" />,
+        href: "/dashboard/contact",
+      },
+      {
+        label: "Go to ourcrowd.com",
+        icon: <FiExternalLink className="h-5 w-5" />,
+        href: "https://ourcrowd.com",
+        external: true,
+      },
     ],
   },
 ];
@@ -74,14 +139,28 @@ interface NavItemComponentProps extends NavItem {
   onItemClick?: () => void;
 }
 
-function NavItemComponent({ label, icon, href, active, external, onItemClick }: NavItemComponentProps) {
+function NavItemComponent({
+  label,
+  icon,
+  href,
+  active,
+  external,
+  onItemClick,
+}: NavItemComponentProps) {
   const className = `flex items-center gap-4 rounded px-3 py-2 text-sm transition ${
-    active ? 'bg-gradient-to-r from-[#60A5E0] to-[#36E8CA] text-white font-semibold' : 'text-[#DEDEDE] hover:bg-[#303030]'
+    active
+      ? "bg-gradient-to-r from-[#60A5E0] to-[#36E8CA] text-white font-semibold"
+      : "text-[#DEDEDE] hover:bg-[#303030]"
   }`;
 
   if (external) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={className} onClick={onItemClick}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+        onClick={onItemClick}>
         {icon}
         <span className="flex-1">{label}</span>
       </a>
@@ -121,7 +200,10 @@ interface DashboardSidebarProps {
   onClose?: () => void;
 }
 
-export default function DashboardSidebar({ isOpen, onClose }: DashboardSidebarProps) {
+export default function DashboardSidebar({
+  isOpen,
+  onClose,
+}: DashboardSidebarProps) {
   const pathname = usePathname();
 
   useEffect(() => {
@@ -138,15 +220,21 @@ export default function DashboardSidebar({ isOpen, onClose }: DashboardSidebarPr
   };
 
   const sidebarContent = (
-    <aside className="fixed left-0 top-[76px] bottom-0 w-[260px] overflow-y-auto border-r border-[#474747] bg-[#0E0810] lg:block dashboard-scroll">
+    <aside className="fixed left-0 top-19 bottom-0 w-65 overflow-y-auto border-r border-[#474747] bg-[#0E0810] lg:block dashboard-scroll">
       <div className="flex h-full flex-col gap-8 px-6 py-8">
         {sections.map((section) => (
-          <NavSection key={section.title} icon={section.icon} title={section.title}>
+          <NavSection
+            key={section.title}
+            icon={section.icon}
+            title={section.title}>
             {section.items.map((item) => (
               <NavItemComponent
                 key={item.label}
                 {...item}
-                active={pathname === item.href || (!!item.href && pathname?.startsWith(item.href))}
+                active={
+                  pathname === item.href ||
+                  (!!item.href && pathname?.startsWith(item.href))
+                }
                 onItemClick={handleItemClick}
               />
             ))}
@@ -156,9 +244,8 @@ export default function DashboardSidebar({ isOpen, onClose }: DashboardSidebarPr
         <GradientButton
           className="w-full rounded-lg border-2 border-[#60A5E0] text-white shadow-[0_4px_4px_rgba(96,165,224,0.5)]"
           gradient="linear-gradient(90deg, #60A5E0 0%, #36E8CA 100%)"
-          size="sm"
-        >
-          Get the Kpop Road App
+          size="sm">
+          Get the SPECFIN App
         </GradientButton>
       </div>
     </aside>
@@ -166,9 +253,7 @@ export default function DashboardSidebar({ isOpen, onClose }: DashboardSidebarPr
 
   return (
     <>
-      <div className="hidden lg:block">
-        {sidebarContent}
-      </div>
+      <div className="hidden lg:block">{sidebarContent}</div>
 
       <AnimatePresence>
         {isOpen && (
@@ -186,17 +271,22 @@ export default function DashboardSidebar({ isOpen, onClose }: DashboardSidebarPr
               initial={{ x: -260 }}
               animate={{ x: 0 }}
               exit={{ x: -260 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="fixed left-0 top-[76px] bottom-0 w-[260px] overflow-y-auto border-r border-[#474747] bg-[#0E0810] z-50 lg:hidden dashboard-scroll"
-            >
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="fixed left-0 top-19 bottom-0 w-65 overflow-y-auto border-r border-[#474747] bg-[#0E0810] z-50 lg:hidden dashboard-scroll">
               <div className="flex h-full flex-col gap-8 px-6 py-8">
                 {sections.map((section) => (
-                  <NavSection key={section.title} icon={section.icon} title={section.title}>
+                  <NavSection
+                    key={section.title}
+                    icon={section.icon}
+                    title={section.title}>
                     {section.items.map((item) => (
                       <NavItemComponent
                         key={item.label}
                         {...item}
-                        active={pathname === item.href || (!!item.href && pathname?.startsWith(item.href))}
+                        active={
+                          pathname === item.href ||
+                          (!!item.href && pathname?.startsWith(item.href))
+                        }
                         onItemClick={handleItemClick}
                       />
                     ))}
@@ -206,9 +296,8 @@ export default function DashboardSidebar({ isOpen, onClose }: DashboardSidebarPr
                 <GradientButton
                   className="w-full rounded-lg border-2 border-[#60A5E0] text-white shadow-[0_4px_4px_rgba(96,165,224,0.5)]"
                   gradient="linear-gradient(90deg, #60A5E0 0%, #36E8CA 100%)"
-                  size="sm"
-                >
-                  Get the Kpop Road App
+                  size="sm">
+                  Get the SPECFIN App
                 </GradientButton>
               </div>
             </motion.div>

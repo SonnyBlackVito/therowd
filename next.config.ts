@@ -5,9 +5,9 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'api.builder.io',
-        pathname: '/api/v1/image/**',
+        protocol: "https",
+        hostname: "api.builder.io",
+        pathname: "/api/v1/image/**",
       },
     ],
   },
@@ -15,12 +15,12 @@ const nextConfig: NextConfig = {
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@base-org/account': false,
-      '@gemini-wallet/core': false,
-      '@metamask/sdk': false,
-      '@coinbase/wallet-sdk': false,
-      '@walletconnect/ethereum-provider': false,
-      'porto': false,
+      "@base-org/account": false,
+      "@gemini-wallet/core": false,
+      "@metamask/sdk": false,
+      "@coinbase/wallet-sdk": false,
+      "@walletconnect/ethereum-provider": false,
+      porto: false,
     };
 
     const ignoredPackages = [
@@ -33,7 +33,7 @@ const nextConfig: NextConfig = {
 
     ignoredPackages.forEach((pattern) => {
       config.plugins.push(
-        new webpack.IgnorePlugin({ resourceRegExp: pattern })
+        new webpack.IgnorePlugin({ resourceRegExp: pattern }),
       );
     });
 
@@ -41,8 +41,10 @@ const nextConfig: NextConfig = {
       new webpack.IgnorePlugin({
         resourceRegExp: /thread-stream\/(test|bench)/,
         contextRegExp: /thread-stream/,
-      })
+      }),
     );
+
+    config.externals.push("pino-pretty", "lokijs", "encoding");
 
     return config;
   },
@@ -50,7 +52,7 @@ const nextConfig: NextConfig = {
     "pino",
     "pino-abstract-transport",
     "@walletconnect",
-    "@reown"
+    "@reown",
   ],
 };
 
