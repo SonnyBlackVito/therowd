@@ -1,30 +1,30 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { FiX } from 'react-icons/fi';
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { FiX } from "react-icons/fi";
 
 const bannerSlides = [
   {
     id: 1,
-    title: 'Welcome to Kpop Road',
+    title: "Welcome to SPECFIN ",
     description:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-    image: '/dashboard/visual.png',
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    image: "/dashboard/visual.png",
   },
   {
     id: 2,
-    title: 'Discover New Opportunities',
+    title: "Discover New Opportunities",
     description:
-      'Explore curated investment deals from top creators and companies. Track performance in real time and never miss important updates about your portfolio.',
-    image: '/dashboard/visual.png',
+      "Explore curated investment deals from top creators and companies. Track performance in real time and never miss important updates about your portfolio.",
+    image: "/dashboard/visual.png",
   },
   {
     id: 3,
-    title: 'Stay Ahead of the Curve',
+    title: "Stay Ahead of the Curve",
     description:
-      'Receive news, webinars, and insights tailored to your interests. Join a growing community of investors who share the same passion.',
-    image: '/dashboard/visual.png',
+      "Receive news, webinars, and insights tailored to your interests. Join a growing community of investors who share the same passion.",
+    image: "/dashboard/visual.png",
   },
 ];
 
@@ -49,8 +49,7 @@ function CloseBadge({ onClick }: { onClick: () => void }) {
       type="button"
       onClick={onClick}
       className="flex h-10 w-10 items-center justify-center rounded-full bg-white/25 text-white transition hover:bg-white/35"
-      aria-label="Dismiss"
-    >
+      aria-label="Dismiss">
       <FiX className="h-5 w-5" />
     </button>
   );
@@ -107,7 +106,9 @@ export default function HeroSection() {
               key={slide.id}
               type="button"
               className={`h-3 w-3 rounded-full transition ${
-                index === activeIndex ? 'bg-white' : 'bg-white/30 hover:bg-white/50'
+                index === activeIndex
+                  ? "bg-white"
+                  : "bg-white/30 hover:bg-white/50"
               }`}
               onClick={() => setActiveIndex(index)}
               aria-label={`Go to slide ${index + 1}`}
