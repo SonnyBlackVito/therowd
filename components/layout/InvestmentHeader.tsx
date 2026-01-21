@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import GradientButton from '@/components/ui/buttons/GradientButton';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import GradientButton from "@/components/ui/buttons/GradientButton";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 export default function InvestmentHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -16,15 +16,15 @@ export default function InvestmentHeader() {
       setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { label: 'Invest', href: '/invest' },
-    { label: 'Portfolio', href: '/portfolio' },
-    { label: 'About Us', href: '/about' },
-    { label: 'Events', href: '/events' },
+    { label: "Invest", href: "/invest" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "About Us", href: "/about" },
+    { label: "Events", href: "/events" },
   ];
 
   const toggleMobileMenu = () => {
@@ -32,26 +32,27 @@ export default function InvestmentHeader() {
   };
 
   return (
-    <header 
+    <header
       className={`w-full sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-[#030B1B]/80 backdrop-blur-md' 
-          : 'bg-[#030B1B]'
+        isScrolled ? "bg-[#030B1B]/80 backdrop-blur-md" : "bg-[#030B1B]"
       }`}
-      style={isScrolled ? {
-        background: '#030B1B',
-        opacity: 0.8,
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-      } : {}}
-    >
-      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 py-3 sm:py-4">
+      style={
+        isScrolled
+          ? {
+              background: "#030B1B",
+              opacity: 0.8,
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+            }
+          : {}
+      }>
+      <div className="w-full max-w-360 mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center z-50">
-            <Image 
-              src="/logo/logo-white.png" 
-              alt="THEROWD Logo" 
-              width={100} 
+            <Image
+              src="/logo/logo-white.png"
+              alt="THEROWD Logo"
+              width={100}
               height={30}
               className="w-20 sm:w-24 md:w-28 h-auto"
               priority
@@ -63,8 +64,7 @@ export default function InvestmentHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-white/80 hover:text-white transition-colors duration-200 font-medium text-sm xl:text-base"
-              >
+                className="text-white/80 hover:text-white transition-colors duration-200 font-medium text-sm xl:text-base">
                 {item.label}
               </Link>
             ))}
@@ -72,17 +72,14 @@ export default function InvestmentHeader() {
 
           <div className="hidden lg:block">
             <Link href="/connect-wallet">
-              <GradientButton size="md">
-                Connect Wallet
-              </GradientButton>
+              <GradientButton size="md">Connect Wallet</GradientButton>
             </Link>
           </div>
 
           <button
             onClick={toggleMobileMenu}
             className="lg:hidden text-white p-2 z-50"
-            aria-label="Toggle menu"
-          >
+            aria-label="Toggle menu">
             {isMobileMenuOpen ? (
               <FaTimes className="w-6 h-6" />
             ) : (
@@ -109,21 +106,18 @@ export default function InvestmentHeader() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="lg:hidden absolute left-0 right-0 top-full bg-[#060C3C] border-t border-white/10 z-50"
-              >
+                className="lg:hidden absolute left-0 right-0 top-full bg-[#060C3C] border-t border-white/10 z-50">
                 <nav className="flex flex-col px-4 py-6 space-y-4">
                   {navItems.map((item, index) => (
                     <motion.div
                       key={item.href}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
+                      transition={{ delay: index * 0.1 }}>
                       <Link
                         href={item.href}
                         onClick={toggleMobileMenu}
-                        className="block text-white/80 hover:text-white transition-colors duration-200 font-medium text-base py-2"
-                      >
+                        className="block text-white/80 hover:text-white transition-colors duration-200 font-medium text-base py-2">
                         {item.label}
                       </Link>
                     </motion.div>
@@ -132,8 +126,7 @@ export default function InvestmentHeader() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: navItems.length * 0.1 }}
-                    className="pt-4"
-                  >
+                    className="pt-4">
                     <GradientButton size="md" className="w-full">
                       Join For Free
                     </GradientButton>

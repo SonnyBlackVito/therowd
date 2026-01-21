@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { FiMoreVertical } from 'react-icons/fi';
+import Image from "next/image";
+import Link from "next/link";
+import { FiMoreVertical } from "react-icons/fi";
 
 interface NewsArticleProps {
   thumbnail: string;
@@ -26,12 +26,11 @@ function NewsArticle({
       <button
         type="button"
         className="absolute right-5 top-5 z-10 rounded-full p-2 text-white/60 transition-colors hover:bg-white/10 hover:text-white"
-        aria-label="More options"
-      >
+        aria-label="More options">
         <FiMoreVertical className="h-5 w-5" />
       </button>
 
-      <div className="relative w-56 flex-shrink-0 overflow-hidden rounded-l-[18px] rounded-r-none md:w-64">
+      <div className="relative w-56 shrink-0 overflow-hidden rounded-l-[18px] rounded-r-none md:w-64">
         <Image
           src={thumbnail}
           alt={headline}
@@ -55,7 +54,7 @@ function NewsArticle({
             <p>{timeAgo}</p>
             <p>{readTime}</p>
           </div>
-          <span className="w-[190px] py-3 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#60A5E0] to-[#36E8CA] px-4 py-1.5 text-xs font-semibold text-[#FFF]">
+          <span className="w-47.5 py-3 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#60A5E0] to-[#36E8CA] px-4  text-xs font-semibold text-[#FFF]">
             {companyTag}
           </span>
         </div>
@@ -67,31 +66,31 @@ function NewsArticle({
 export default function PortfolioNewsSection() {
   const newsArticles = [
     {
-      thumbnail: '/dashboard/visual.png',
+      thumbnail: "/dashboard/visual.png",
       headline:
-        'Lambda doubles down on Midwest expansion, to build AI factory in Kansas City, MO',
-      source: 'PR Newswire',
-      timeAgo: '5 days ago',
-      readTime: '3 min read',
-      companyTag: 'Lambda (lambda.ai)',
+        "Lambda doubles down on Midwest expansion, to build AI factory in Kansas City, MO",
+      source: "PR Newswire",
+      timeAgo: "5 days ago",
+      readTime: "3 min read",
+      companyTag: "Lambda (lambda.ai)",
     },
     {
-      thumbnail: '/dashboard/growth.png',
+      thumbnail: "/dashboard/growth.png",
       headline:
-        'Dani Cherkassky, CEO and Co-Founder of Kardome - Interview Series',
-      source: 'Unite.Ai',
-      timeAgo: '5 days ago',
-      readTime: '3 min read',
-      companyTag: 'Kardome',
+        "Dani Cherkassky, CEO and Co-Founder of Kardome - Interview Series",
+      source: "Unite.Ai",
+      timeAgo: "5 days ago",
+      readTime: "3 min read",
+      companyTag: "Kardome",
     },
     {
-      thumbnail: '/dashboard/analytics.png',
+      thumbnail: "/dashboard/analytics.png",
       headline:
-        'IQM collaborates with NVIDIA on NVQLink to enable scalable quantum error correction',
-      source: 'IQM',
-      timeAgo: '5 days ago',
-      readTime: '3 min read',
-      companyTag: 'IQM',
+        "IQM collaborates with NVIDIA on NVQLink to enable scalable quantum error correction",
+      source: "IQM",
+      timeAgo: "5 days ago",
+      readTime: "3 min read",
+      companyTag: "IQM",
     },
   ];
 
@@ -110,8 +109,7 @@ export default function PortfolioNewsSection() {
           </div>
           <Link
             href="/news"
-            className="ml-auto text-base font-semibold text-[#60A5E0] transition-colors duration-200 hover:text-[#36E8CA]"
-          >
+            className="ml-auto text-base font-semibold text-[#60A5E0] transition-colors duration-200 hover:text-[#36E8CA]">
             See all
           </Link>
         </div>
