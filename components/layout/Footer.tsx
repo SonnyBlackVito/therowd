@@ -24,7 +24,7 @@ export default function Footer() {
   ];
 
   const connectLinks = [
-    { label: "Contact Us", href: "/contact" },
+    { label: "Contact Us", href: "/contact-us" },
     { label: "Startup Application", href: "/startup-application" },
     { label: "OurCrowd Jobs", href: "/jobs" },
     { label: "Events Calendar", href: "/events" },

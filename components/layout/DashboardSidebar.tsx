@@ -122,7 +122,7 @@ const sections: Array<{
       {
         label: "Contact Us",
         icon: <FiMessageCircle className="h-5 w-5" />,
-        href: "/dashboard/contact",
+        href: "/contact-us",
       },
       {
         label: "Go to ourcrowd.com",
