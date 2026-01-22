@@ -125,9 +125,9 @@ const sections: Array<{
         href: "/contact-us",
       },
       {
-        label: "Go to ourcrowd.com",
+        label: "Go to SPECFIN",
         icon: <FiExternalLink className="h-5 w-5" />,
-        href: "https://ourcrowd.com",
+        href: "/",
         external: true,
       },
     ],
@@ -149,7 +149,7 @@ function NavItemComponent({
 }: NavItemComponentProps) {
   const className = `flex items-center gap-4 rounded px-3 py-2 text-sm transition ${
     active
-      ? "bg-gradient-to-r from-[#60A5E0] to-[#36E8CA] text-white font-semibold"
+      ? "bg-linear-to-r from-[#60A5E0] to-[#36E8CA] text-white font-semibold"
       : "text-[#DEDEDE] hover:bg-[#303030]"
   }`;
 
