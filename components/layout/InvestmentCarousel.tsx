@@ -22,10 +22,11 @@ const slides: CarouselSlide[] = [
     description: "verified, audited, safeguarded",
     features: [
       "Every offering undergoes strict due-diligence of business & financials",
-      "founder & team screening",
-      "IP assessment smart contract security",
-      "All opportunities undergo on-chain tradeable, immutable independent buying speculation",
-      "You are acquiring qualified, verified, asset ownership",
+      "Founder & team screening",
+      "Independent smart contract security audit",
+      "All ownership is recorded on-chain — transparent, traceable, immutable.",
+      "You are not buying speculation.",
+      "You are acquiring audited, verified, asset-backed ownership.",
     ],
     buttonText: "Invest Securely",
     buttonLink: "/invest",
@@ -41,7 +42,7 @@ const slides: CarouselSlide[] = [
     buttonText: "Explore Opportunities",
     buttonLink: "/opportunities",
     backgroundColor: "bg-white",
-    image: "/invesment-how/key_one.png",
+    image: "/invesment-how/key_two.png",
   },
   {
     id: 3,
@@ -57,7 +58,7 @@ const slides: CarouselSlide[] = [
     buttonText: "Learn More",
     buttonLink: "/about",
     backgroundColor: "bg-white",
-    image: "/invesment-how/key_two.png",
+    image: "/invesment-how/key_three.png",
   },
 ];
 
@@ -123,7 +124,7 @@ export default function InvestmentCarousel() {
                     ].features
                       .slice(0, 3)
                       .map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
+                        <li key={idx} className="flex items-center gap-2">
                           <span className="text-[#36E8CA] font-bold text-lg mt-0.5 shrink-0">
                             ✓
                           </span>
@@ -135,7 +136,7 @@ export default function InvestmentCarousel() {
                   </ul>
                 )}
 
-                <button className="w-fit px-5 py-2 bg-gradient-to-r from-[#60A5E0] to-[#36E8CA] text-white font-semibold rounded-lg hover:opacity-90 transition text-sm">
+                <button className="w-fit px-5 py-2 bg-linear-to-r  from-[#60A5E0] to-[#36E8CA] text-white font-semibold rounded-lg hover:opacity-90 transition text-sm">
                   {
                     slides[(currentSlide - 1 + slides.length) % slides.length]
                       .buttonText
@@ -163,7 +164,7 @@ export default function InvestmentCarousel() {
                     {slide.features.length > 0 && (
                       <ul className="space-y-1">
                         {slide.features.slice(0, 3).map((feature, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
+                          <li key={idx} className="flex items-center gap-2">
                             <span className="text-[#36E8CA] font-bold text-lg mt-0.5 shrink-0">
                               ✓
                             </span>
@@ -177,13 +178,13 @@ export default function InvestmentCarousel() {
                   </div>
 
                   {/* Button */}
-                  <button className="w-fit px-5 py-2 bg-gradient-to-r from-[#60A5E0] to-[#36E8CA] text-white font-semibold rounded-lg hover:opacity-90 transition text-sm">
+                  <button className="w-fit px-5 py-2 bg-linear-to-r from-[#60A5E0] to-[#36E8CA] text-white font-semibold rounded-lg hover:opacity-90 transition text-sm">
                     {slide.buttonText}
                   </button>
                 </div>
 
                 {/* Right Side - Image */}
-                <div className="w-full md:w-1/2 h-40 md:h-80 bg-gradient-to-br from-[#001a4d] to-black overflow-hidden hidden md:flex items-center justify-center relative">
+                <div className="w-full md:w-1/2 h-40 md:h-80 bg-linear-to-br from-[#001a4d] to-black overflow-hidden hidden md:flex items-center justify-center relative">
                   {slide.image && (
                     <Image
                       src={slide.image}
