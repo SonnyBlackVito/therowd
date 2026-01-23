@@ -1,3 +1,4 @@
+import InvestmentCarousel from "@/components/layout/InvestmentCarousel";
 import AchievementSection from "./components/AchievementSection";
 import BenefitSection from "./components/BenefitSection";
 import HeroSection from "./components/HeroSection";
@@ -16,6 +17,7 @@ export default function Home() {
       <WhyChooseUsSection />
       <AchievementSection />
       <InvestSection />
+      <InvestmentCarousel />
       <HowToStartInvestSection />
       <QuestionSection />
     </>

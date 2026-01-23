@@ -125,7 +125,7 @@ export default function HowToStartInvestSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-6 sm:mb-8 lg:mb-10">
           <h2 className="text-[26px] sm:text-[29px] md:text-[32px] lg:text-[35px] font-bold text-white mb-3 sm:mb-4">
-            How to Start Investing with TheROWD
+            How to Start Investing with SPECFIN
           </h2>
           <div className="space-y-1 text-[16px] sm:text-[18px] md:text-[20px] text-white/80 max-w-3xl mx-auto">
             <p>Tokenized ownership may provide optional secondary liquidity.</p>
