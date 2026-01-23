@@ -25,15 +25,20 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const cookieStore = await cookies();
-  // const cookieString = cookieStore
-  //   .getAll()
-  //   .map(({ name, value }) => `${name}=${value}`)
-  //   .join("; ");
   const headersObj = await headers();
   const cookies = headersObj.get("cookie");
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="preload"
+          href="https://fonts.reown.com/KHTeka-Medium.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {/* <AppLayout>{children}</AppLayout> */}

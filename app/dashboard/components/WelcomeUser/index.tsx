@@ -11,27 +11,6 @@ export default function WelcomeUserSection() {
   const user = useAppSelector((state) => state.auth.user);
   console.log("user", user);
   const isConnected = useAppSelector((state) => state.auth.isConnected);
-
-  useEffect(() => {
-    console.log("WelcomeUserSection mounted");
-
-    const reownEmail = localStorage.getItem("reown_email");
-    const reownUser = localStorage.getItem("reown_user");
-
-    console.log("Checking for email...");
-    console.log("reownEmail:", reownEmail);
-    console.log("reownUser:", reownUser);
-    console.log("localStorage keys:", Object.keys(localStorage));
-
-    // Cách 2: Check các key khác của Reown
-    const keys = Object.keys(localStorage);
-    const emailKey = keys.find((k) => k.includes("email"));
-    const userKey = keys.find((k) => k.includes("user"));
-
-    console.log("Found emailKey:", emailKey);
-    console.log("Found userKey:", userKey);
-  }, []);
-
   return (
     <section className="w-full bg-[#05010F] py-8">
       <div className="mx-auto flex w-full flex-col gap-8 px-4">

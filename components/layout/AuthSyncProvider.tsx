@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useAppKitAccount } from "@reown/appkit/react";
-import { useConnection } from "wagmi";
+import { useAccount } from "wagmi";
 import { useAppDispatch } from "@/store/store";
 import { setUser, clearUser } from "@/store/slices/authSlice";
 
@@ -10,53 +10,118 @@ export function AuthSyncProvider({ children }: { children: React.ReactNode }) {
   const {
     embeddedWalletInfo,
     isConnected: isAppKitConnected,
-    address: appKitAddressSociallyConnected,
+    address: appKitAddress,
+    caipAddress,
   } = useAppKitAccount();
-  const { address, isConnected: isWagmiConnected } = useConnection();
+
+  const { address: wagmiAddress, isConnected: isWagmiConnected } = useAccount();
   const dispatch = useAppDispatch();
-  const syncedRef = useRef(false);
+  const prevStateRef = useRef<{
+    isConnected: boolean;
+    email: string | null;
+    address: string | null;
+  } | null>(null);
 
   useEffect(() => {
-    if (syncedRef.current) return;
+    // Determine current state
+    const isUserConnected = isAppKitConnected || isWagmiConnected;
+    const currentAddress = appKitAddress || wagmiAddress;
+    const userEmail = embeddedWalletInfo?.user?.email || null;
 
-    if (isAppKitConnected && embeddedWalletInfo?.user?.email) {
-      const email = embeddedWalletInfo.user.email;
-      const username = email.split("@")[0];
+    console.log("Auth State:", {
+      isAppKitConnected,
+      isWagmiConnected,
+      userEmail,
+      currentAddress,
+      embeddedWalletInfo,
+    });
+
+    // Check if state actually changed
+    const stateChanged =
+      prevStateRef.current?.isConnected !== isUserConnected ||
+      prevStateRef.current?.email !== userEmail ||
+      prevStateRef.current?.address !== currentAddress;
+
+    if (!stateChanged) {
+      return;
+    }
+
+    // User is connected with email
+    if (isUserConnected && userEmail && currentAddress) {
+      const username = userEmail.split("@")[0];
 
       dispatch(
         setUser({
-          email: email,
+          email: userEmail,
           username: username,
-          address: appKitAddressSociallyConnected || null,
-          name: embeddedWalletInfo.user.email || username,
-          avatar: embeddedWalletInfo.user.username || null,
+          address: currentAddress,
+          name: userEmail,
+          avatar: embeddedWalletInfo?.user?.username || null,
         }),
       );
 
-      syncedRef.current = true;
-    } else if (isWagmiConnected && address) {
-      // const shortAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
+      prevStateRef.current = {
+        isConnected: true,
+        email: userEmail,
+        address: currentAddress,
+      };
+    }
+    // User connected with wallet only (no email)
+    else if (isWagmiConnected && wagmiAddress && !userEmail) {
+      const shortAddress = `${wagmiAddress.slice(0, 6)}...${wagmiAddress.slice(-4)}`;
 
       dispatch(
         setUser({
           email: null,
-          username: address,
-          address: address,
-          name: address,
+          username: shortAddress,
+          address: wagmiAddress,
+          name: shortAddress,
           avatar: null,
         }),
       );
 
-      syncedRef.current = true;
-    } else if (!isAppKitConnected && !isWagmiConnected && syncedRef.current) {
+      prevStateRef.current = {
+        isConnected: true,
+        email: null,
+        address: wagmiAddress,
+      };
+    }
+    // User connected with AppKit email only
+    else if (isAppKitConnected && userEmail && appKitAddress) {
+      const username = userEmail.split("@")[0];
+
+      dispatch(
+        setUser({
+          email: userEmail,
+          username: username,
+          address: appKitAddress,
+          name: userEmail,
+          avatar: embeddedWalletInfo?.user?.username || null,
+        }),
+      );
+
+      prevStateRef.current = {
+        isConnected: true,
+        email: userEmail,
+        address: appKitAddress,
+      };
+    }
+    // User disconnected
+    else if (!isAppKitConnected && !isWagmiConnected) {
       dispatch(clearUser());
-      syncedRef.current = false;
+
+      prevStateRef.current = {
+        isConnected: false,
+        email: null,
+        address: null,
+      };
     }
   }, [
     isAppKitConnected,
-    embeddedWalletInfo,
     isWagmiConnected,
-    address,
+    embeddedWalletInfo,
+    appKitAddress,
+    wagmiAddress,
     dispatch,
   ]);
 
