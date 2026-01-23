@@ -1,5 +1,7 @@
 import { createAppKit } from "@reown/appkit/react";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
+import { cookieStorage, createStorage, http } from "@wagmi/core";
+
 import {
   mainnet,
   arbitrum,
@@ -17,7 +19,7 @@ const metadata = {
   url:
     typeof window !== "undefined"
       ? window.location.origin
-      : "https://therowd.com",
+      : "https://therowd.vercel.app/",
   icons: [
     typeof window !== "undefined"
       ? `${window.location.origin}/logo/logo-white.png`
@@ -26,6 +28,9 @@ const metadata = {
 };
 
 const wagmiAdapter = new WagmiAdapter({
+  storage: createStorage({
+    storage: cookieStorage,
+  }),
   networks: [mainnet, arbitrum, polygon, optimism, base, sepolia],
   projectId,
   ssr: true,
@@ -37,7 +42,7 @@ export const appKit = createAppKit({
   projectId,
   networks: [mainnet, arbitrum, polygon, optimism, base, sepolia],
   defaultNetwork: mainnet,
-  metadata,
+  metadata: metadata,
   features: {
     analytics: true,
     email: true,
