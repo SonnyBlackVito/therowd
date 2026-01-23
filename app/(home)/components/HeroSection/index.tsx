@@ -13,7 +13,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-[32px] sm:text-[40px] md:text-[50px] lg:text-[60px] font-bold mb-5 sm:mb-5.5 bg-gradient-to-r from-[#60A5E0] to-[#36E8CA] bg-clip-text text-transparent">
+              className="text-[32px] sm:text-[40px] md:text-[50px] lg:text-[60px] font-bold mb-5 sm:mb-5.5 bg-linear-to-r from-[#60A5E0] to-[#36E8CA] bg-clip-text text-transparent">
               Invest in the Future
             </motion.h1>
 
