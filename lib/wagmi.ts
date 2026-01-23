@@ -9,8 +9,7 @@ import {
   sepolia,
 } from "@reown/appkit/networks";
 
-const projectId =
-  process.env.WALLETCONNECT_PROJECT_ID || "424f08f79552aebad3a5092c7f3442b6";
+const projectId = "424f08f79552aebad3a5092c7f3442b6";
 
 const metadata = {
   name: "TheRowd",
